@@ -34,9 +34,12 @@
   },
   "name":"Project 2",
   "resources":[
+    {"id":{"name":"obj_Button","path":"objects/obj_Button/obj_Button.yy",},},
     {"id":{"name":"obj_CollisionTiles","path":"objects/obj_CollisionTiles/obj_CollisionTiles.yy",},},
+    {"id":{"name":"obj_Start_btn","path":"objects/obj_Start_btn/obj_Start_btn.yy",},},
     {"id":{"name":"rm_MainMenu","path":"rooms/rm_MainMenu/rm_MainMenu.yy",},},
     {"id":{"name":"rm_StartingRoom","path":"rooms/rm_StartingRoom/rm_StartingRoom.yy",},},
+    {"id":{"name":"spr_Button","path":"sprites/spr_Button/spr_Button.yy",},},
     {"id":{"name":"spr_CollisionTiles","path":"sprites/spr_CollisionTiles/spr_CollisionTiles.yy",},},
     {"id":{"name":"spr_FloorTiles","path":"sprites/spr_FloorTiles/spr_FloorTiles.yy",},},
     {"id":{"name":"TileSet1","path":"tilesets/TileSet1/TileSet1.yy",},},
