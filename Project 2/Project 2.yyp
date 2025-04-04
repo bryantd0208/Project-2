@@ -34,11 +34,14 @@
   },
   "name":"Project 2",
   "resources":[
-    {"id":{"name":"obj_Button","path":"objects/obj_Button/obj_Button.yy",},},
+    {"id":{"name":"fnt_ButtonText","path":"fonts/fnt_ButtonText/fnt_ButtonText.yy",},},
+    {"id":{"name":"obj_Button_Parent","path":"objects/obj_Button_Parent/obj_Button_Parent.yy",},},
+    {"id":{"name":"obj_Button_Play","path":"objects/obj_Button_Play/obj_Button_Play.yy",},},
+    {"id":{"name":"obj_Button_Quit","path":"objects/obj_Button_Quit/obj_Button_Quit.yy",},},
     {"id":{"name":"obj_CollisionTiles","path":"objects/obj_CollisionTiles/obj_CollisionTiles.yy",},},
-    {"id":{"name":"obj_Start_btn","path":"objects/obj_Start_btn/obj_Start_btn.yy",},},
     {"id":{"name":"rm_MainMenu","path":"rooms/rm_MainMenu/rm_MainMenu.yy",},},
     {"id":{"name":"rm_StartingRoom","path":"rooms/rm_StartingRoom/rm_StartingRoom.yy",},},
+    {"id":{"name":"snd_ButtonPress","path":"sounds/snd_ButtonPress/snd_ButtonPress.yy",},},
     {"id":{"name":"spr_Button","path":"sprites/spr_Button/spr_Button.yy",},},
     {"id":{"name":"spr_CollisionTiles","path":"sprites/spr_CollisionTiles/spr_CollisionTiles.yy",},},
     {"id":{"name":"spr_FloorTiles","path":"sprites/spr_FloorTiles/spr_FloorTiles.yy",},},
@@ -47,8 +50,8 @@
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
-    {"roomId":{"name":"rm_StartingRoom","path":"rooms/rm_StartingRoom/rm_StartingRoom.yy",},},
     {"roomId":{"name":"rm_MainMenu","path":"rooms/rm_MainMenu/rm_MainMenu.yy",},},
+    {"roomId":{"name":"rm_StartingRoom","path":"rooms/rm_StartingRoom/rm_StartingRoom.yy",},},
   ],
   "templateType":"game",
   "TextureGroups":[
