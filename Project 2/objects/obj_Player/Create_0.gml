@@ -19,6 +19,7 @@ player_state = PlayerState.WALKING;
 base_speed = 3;
 run_speed = 4.5;
 sneak_speed = base_speed / 2; // Half of base speed
+player_speed = base_speed
 
 // **Player Score**
 global.player_score = 0;

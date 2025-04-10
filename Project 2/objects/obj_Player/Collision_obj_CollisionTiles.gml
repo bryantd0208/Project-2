@@ -1,7 +1,7 @@
-// I got this value from what I saw in gamemaker workshop 2. You can delete this if you don't need it!
 vspeed = 0
 
-	
-/* if (instance_place(x, y+1, obj_block)) {
-	gravity = 0
-} */
+if (place_meeting(x, y + 1, obj_CollisionTiles)) {
+    gravity = 0;
+} else {
+    gravity = 0.2;
+}
