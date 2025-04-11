@@ -1,23 +1,29 @@
-//depth = 0;
-
-//if (room = rm_main_game) image_yscale = 1.5;
-
-// Define movement states as an enum
 enum PlayerState {
     WALKING,
     RUNNING,
-    SNEAKING,
-	IDLE
+    DEFENDING,
+    ATTACKING,
+    DAMAGED,
+    IDLE
 }
+global.hit_freeze_timer = 0; // Shared global freeze timer
 
-gravity_direction = 270
+damage_timer = 0;
+
+gravity = 0.4;         // Good value for platformers
+gravity_direction = 270; // Downward
+
+vspeed = 0; // Start falling naturally
+knockback_target_hspeed = 0;
+knockback_target_vspeed = 0;
+
 
 // Initialize player state
-player_state = PlayerState.WALKING;
+player_state = PlayerState.IDLE;
 
 // Define movement speeds
-base_speed = 3;
-run_speed = 4.5;
+base_speed = 1.5;
+run_speed = 2;
 sneak_speed = base_speed / 2; // Half of base speed
 player_speed = base_speed
 

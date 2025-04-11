@@ -1,7 +1,9 @@
-vspeed = 0
+// If colliding while falling (landing on ground)
+if (vspeed > 0) {
+    vspeed = 0;
+}
 
-if (place_meeting(x, y + 1, obj_CollisionTiles)) {
-    gravity = 0;
-} else {
-    gravity = 0.2;
+// If colliding while rising (hitting ceiling)
+if (vspeed < 0) {
+    vspeed = 1; // Bounce downward slightly
 }

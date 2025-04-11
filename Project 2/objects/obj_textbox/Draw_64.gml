@@ -1,0 +1,26 @@
+if (visible || (abs(current_y - (room_height - 48 - 100)) > 1)) {
+    // Draw semi-transparent background
+    draw_set_color(c_black);
+    draw_set_alpha(0.7);
+
+    var margin = 48;
+    var box_width = room_width - (margin * 2);
+    var box_height = 100;
+    var box_x = margin;
+    var box_y = current_y; // <--- IMPORTANT: use current_y now
+
+    draw_rectangle(box_x, box_y, box_x + box_width, box_y + box_height, false);
+
+    draw_set_alpha(1);
+
+    // Draw text inside
+    draw_set_color(c_white);
+    draw_text(box_x + 16, box_y + 16, string_copy(current_text, 1, char_index));
+
+    // Draw portrait if exists
+    if (portrait_sprite != -1) {
+        var portrait_x = box_x + 16;
+        var portrait_y = box_y - 64; // Adjust above box
+        draw_sprite(portrait_sprite, 0, portrait_x, portrait_y);
+    }
+}
