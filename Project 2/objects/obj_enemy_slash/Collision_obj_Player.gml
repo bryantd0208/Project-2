@@ -18,7 +18,7 @@ if (other.player_state == PlayerState.DEFENDING) {
 		];
 
 		// Pass the sprite you want to use (ex: spr_raccoon_portrait)
-		scr_start_dialogue(story, spr_Player1);
+		scr_start_dialogue(story, spr_zero_text);
 
         instance_destroy();
     }
