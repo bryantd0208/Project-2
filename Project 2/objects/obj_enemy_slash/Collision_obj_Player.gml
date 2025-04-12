@@ -11,15 +11,7 @@ if (other.player_state == PlayerState.DEFENDING) {
 
     if (correct_block) {
         // --- Successful Block ---
-		var story = [
-		    "Once upon a time, a raccoon cleaned the world...",
-		    "He faced many dangers and obstacles ahead.",
-		    "But with courage, he continued forward."
-		];
-
-		// Pass the sprite you want to use (ex: spr_raccoon_portrait)
-		scr_start_dialogue(story, spr_zero_text);
-
+		show_debug_message("Attack Blocked");
         instance_destroy();
     }
     else {

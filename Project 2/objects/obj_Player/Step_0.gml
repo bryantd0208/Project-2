@@ -125,3 +125,13 @@ y += vspeed;
 
 // --- DEBUG (optional) ---
 //show_debug_message("Grounded: " + string(grounded) + " | Hspeed: " + string(hspeed) + " | Vspeed: " + string(vspeed) + " | State: " + string(player_state));
+  if (keyboard_check(vk_escape)) {		
+		var story = [
+		    "Once upon a time, a raccoon cleaned the world...",
+		    "He faced many dangers and obstacles ahead.",
+		    "But with courage, he continued forward."
+		];
+
+		// Pass the sprite you want to use (ex: spr_raccoon_portrait)
+		scr_start_dialogue(story, spr_zero_text);
+  }
