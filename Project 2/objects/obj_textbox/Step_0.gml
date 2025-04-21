@@ -11,7 +11,7 @@ if (visible) {
     }
 
     // Input to continue
-    if (mouse_check_button_pressed(mb_left)) {
+    if (mouse_check_button_pressed(mb_left) || keyboard_check_pressed(vk_enter)) {
         
         if (char_index < string_length(current_text)) {
             // Instantly show all text if still typing

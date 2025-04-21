@@ -34,7 +34,7 @@ if (current_node != noone && target_node == noone) {
     }
     
     // Press Space to enter level
-    if (keyboard_check_pressed(vk_space)) {
+    if (keyboard_check_pressed(vk_space) || keyboard_check_pressed(vk_enter)) {
         if (current_node.unlocked) {
             room_goto(rm_StartingRoom);
         }
