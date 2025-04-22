@@ -66,6 +66,7 @@
     {"id":{"name":"spr_Button","path":"sprites/spr_Button/spr_Button.yy",},},
     {"id":{"name":"spr_CollisionTiles","path":"sprites/spr_CollisionTiles/spr_CollisionTiles.yy",},},
     {"id":{"name":"spr_FloorTiles","path":"sprites/spr_FloorTiles/spr_FloorTiles.yy",},},
+    {"id":{"name":"spr_GroundTile","path":"sprites/spr_GroundTile/spr_GroundTile.yy",},},
     {"id":{"name":"spr_obstacle","path":"sprites/spr_obstacle/spr_obstacle.yy",},},
     {"id":{"name":"spr_Player1","path":"sprites/spr_Player1/spr_Player1.yy",},},
     {"id":{"name":"spr_Slime","path":"sprites/spr_Slime/spr_Slime.yy",},},
