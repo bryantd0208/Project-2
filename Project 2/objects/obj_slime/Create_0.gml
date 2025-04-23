@@ -11,3 +11,5 @@ jump_strength = -5;
 
 // --- Slime Specific Changes ---
 attack_range = 175;
+
+enemy_hp = 50;

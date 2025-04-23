@@ -16,6 +16,12 @@ if (!grounded) {
 }
 
 if (player_state == PlayerState.DAMAGED) {
+	if (!damage_taken) {
+		current_health -= 20;
+		damage_taken = true;
+		show_debug_message("Player took damage! HP: " + string(current_health));
+	}
+	
     damage_timer += 1;
 
     // Smoothly LERP hspeed and vspeed toward knockback target
@@ -29,7 +35,10 @@ if (player_state == PlayerState.DAMAGED) {
         vspeed = 0; // also reset bounce
         knockback_target_hspeed = 0;
         knockback_target_vspeed = 0;
+		damage_taken = false;
     }
+	
+	// Do Damage
 }
 
 
@@ -135,3 +144,14 @@ y += vspeed;
 		// Pass the sprite you want to use (ex: spr_raccoon_portrait)
 		scr_start_dialogue(story, spr_zero_text);
   }
+// LOSS CONDITION
+if (current_health <= 0 && !global.game_lost) {
+    global.game_lost = true;
+    room_goto(rm_Lose);
+}
+
+// WIN CONDITION
+if (instance_number(obj_slime) == 0 && !global.game_won) {
+    global.game_won = true;
+    room_goto(rm_Win);
+}

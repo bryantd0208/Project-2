@@ -1,0 +1,44 @@
+LICENSES AND ASSET CREDITS
+==========================
+
+All original assets created by the Trash Pandas team (including the player sprite, UI elements, ground tiles, menus, text systems, and gameplay systems) are owned and created by the development team. These assets are free to use within this game project and are not to be redistributed separately without permission.
+
+---
+
+3RD PARTY ASSETS USED
+----------------------
+
+🔹 **Slime Sprite**
+- Source: https://opengameart.org/content/10-fantasy-rpg-enemies
+- License: CC-BY 3.0
+- Notes: While the base image was downloaded, the animation and frame cleanup were done by the Trash Pandas team.
+
+🔹 **Sword Slash Effect**
+- Source: https://spikerman.itch.io/sword-slashes
+- License: Free for personal/commercial use (per itch.io page)
+- Creator: Spikerman
+- Notes: Used with no modification.
+
+🔹 **Temporary Tile Art**
+- Creator: Screaming Brain Studios
+- License: CC0 / Public Domain
+- Source: Screaming Brain Studios CC0 Asset Collection
+- Rights: “You are free to use these assets in any and all projects, commercial or non-commercial, with no restrictions, and can be released with or without credit.”
+
+---
+
+AI-GENERATED IMAGES (For Prototyping/Reference Only)
+-----------------------------------------------------
+These images were generated with ChatGPT using text prompts for concept visualization. They are NOT used as in-game assets but served as placeholder or promotional art during development.
+
+Image Credits: ChatGPT  
+Prompts used included:
+- “Create a mythical creature that is hooded and is in a similar art style to Hollow Knight”
+- “Create an image of a corrupted bird wyvern fighting a hero in a 2D platformer game”
+- “Create a title screen for the game: Remembrance”
+
+These images are for non-commercial, internal use only.
+
+---
+
+Thank you to all open-source artists and developers who helped make this prototype possible.
