@@ -1,3 +1,11 @@
+// --- Step Event for obj_level_select_manager ---
+
+
+// --- Refresh unlocked nodes every frame (only needed if levels_unlocked changes during game) ---
+with (obj_level_node) {
+    unlocked = array_contains(global.levels_unlocked, level_id);
+}
+
 // --- Move toward target node ---
 if (target_node != noone) {
     var dx = target_node.x - x;
@@ -33,14 +41,13 @@ if (current_node != noone && target_node == noone) {
         scr_move_to_adjacent_node(0, 1);
     }
     
-    // Press Space to enter level
+    // Press Space or Enter to enter level
     if (keyboard_check_pressed(vk_space) || keyboard_check_pressed(vk_enter)) {
         if (current_node.unlocked) {
             room_goto(rm_StartingRoom);
         }
     }
 }
-
 
 // --- Cheat: Alt + L to unlock the next connected level ---
 if (keyboard_check(vk_alt) && keyboard_check_pressed(ord("L"))) {
@@ -62,7 +69,7 @@ if (keyboard_check(vk_alt) && keyboard_check_pressed(ord("L"))) {
                     next_node.unlocked = true;
                     show_debug_message("Cheat: Unlocked Level ID " + string(next_node.level_id));
                     
-                    // --- Safely unlock it in global controller now
+                    // --- Also safely add it to global unlocked levels
                     if (instance_exists(obj_global_controller)) {
                         scr_unlock_level(next_node.level_id);
                     }
@@ -72,4 +79,13 @@ if (keyboard_check(vk_alt) && keyboard_check_pressed(ord("L"))) {
             }
         }
     }
+}
+
+function array_contains(arr, val) {
+    for (var i = 0; i < array_length(arr); i++) {
+        if (arr[i] == val) {
+            return true;
+        }
+    }
+    return false;
 }

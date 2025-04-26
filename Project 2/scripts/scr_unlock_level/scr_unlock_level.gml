@@ -1,4 +1,4 @@
-function scr_unlock_level() {
+function scr_unlock_level(level_id) {
     /// @function scr_unlock_level(level_id)
     /// @param level_id The ID of the level to unlock
 
@@ -13,12 +13,12 @@ function scr_unlock_level() {
 
     var level_to_unlock = argument0;
 
-    // Make sure the controller exists
+    // Make sure the global controller exists
     if (instance_exists(obj_global_controller)) {
 
         // Check if the level is already unlocked
-        if (!array_contains(obj_global_controller.levels_unlocked, level_to_unlock)) {
-            array_push(obj_global_controller.levels_unlocked, level_to_unlock);
+        if (!array_contains(global.levels_unlocked, level_to_unlock)) {
+            array_push(global.levels_unlocked, level_to_unlock);
             show_debug_message("Unlocked level: " + string(level_to_unlock));
 
             // --- Now animate the connection! ---
@@ -26,7 +26,6 @@ function scr_unlock_level() {
                 // For ALL nodes, check if THIS node has a connection TO the newly unlocked level
                 for (var i = 0; i < array_length(connections); i++) {
                     if (connections[i] == level_to_unlock) {
-                        // This node connects TO the new unlocked level
                         newly_unlocked_level = level_to_unlock;
                         line_reveal_progress = 0; // Animate that line
                     }

@@ -26,3 +26,10 @@ wrong_way_lines = [
 if (!variable_global_exists("game_won")) global.game_won = false;
 if (!variable_global_exists("game_lost")) global.game_lost = false;
 if (!variable_global_exists("show_pause_menu")) global.show_pause_menu = false;
+
+// --- Gravity Flip Control ---
+global.gravity_flipping = false;
+global.gravity_flip_timer = 0;
+global.gravity_flip_duration = 0;
+global.gravity_target_scale = 1;
+global.gravity_target_gravity = gravity;
