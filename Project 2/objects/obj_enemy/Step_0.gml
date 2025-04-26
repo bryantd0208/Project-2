@@ -1,48 +1,47 @@
-// --- Create Event ---
-attack_cooldown = 0;
-attack_range = 150;
-attack_speed = 90;
-move_speed = 0; // <-- Parent doesn't move on its own
-can_attack = true; // <-- Some enemies might not attack, so this is flexible
-
 // --- Step Event ---
+
+// --- PLAYER TRACKING ---
 var player = instance_nearest(x, y, obj_Player);
 
 if (player != noone) {
     var dist_to_player = point_distance(x, y, player.x, player.y);
 
-    // Face player
-    if (player.x < x) {
-        image_xscale = -1;
-    }
-    else {
-        image_xscale = 1;
-    }
+    // Face the player
+    image_xscale = (player.x < x) ? -1 : 1;
 
-    // --- Move toward player if you want (for walking enemies) ---
-    // (Parent does not move; children can override)
-
-    // --- Attack ---
+    // --- ATTACK ---
     if (can_attack && dist_to_player < attack_range) {
         if (attack_cooldown <= 0) {
-            perform_attack();
+            if (variable_instance_exists(id, "skeleton_type")) {
+                scr_perform_attack(skeleton_type);
+            } else {
+                perform_attack();
+            }
             attack_cooldown = attack_speed;
         }
     }
 }
 
-// --- Attack Cooldown ---
+// --- ATTACK COOLDOWN TIMER ---
 if (attack_cooldown > 0) {
     attack_cooldown -= 1;
 }
 
-// --- Script: Default Attack ---
-function perform_attack() {
-    var slash_offset = 12;
-    var slash_x = x + (image_xscale * slash_offset);
-    var slash_y = y;
-    
-    var slash = instance_create_layer(slash_x, slash_y, "Instances", obj_enemy_slash);
-    slash.direction = (image_xscale == -1) ? 180 : 0;
-    slash.image_xscale = image_xscale;
+// --- GRAVITY ---
+var grounded = place_meeting(x, y + 1, obj_CollisionTiles);
+
+if (!grounded) {
+    vspeed += gravity;
+} else {
+    vspeed = 0;
 }
+
+// --- COLLISION CHECKS ---
+if (place_meeting(x, y + vspeed, obj_CollisionTiles)) {
+    // Prevent falling into floor
+    while (!place_meeting(x, y + sign(vspeed), obj_CollisionTiles)) {
+        y += sign(vspeed);
+    }
+    vspeed = 0;
+}
+y += vspeed;

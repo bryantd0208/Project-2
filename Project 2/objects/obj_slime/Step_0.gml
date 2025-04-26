@@ -1,18 +1,86 @@
-// --- GROUND CHECK ---
+// --- Ground Check ---
 var grounded = place_meeting(x, y + 1, obj_CollisionTiles);
 
-// --- APPLY GRAVITY ---
+// --- Gravity ---
 if (!grounded) {
     vspeed += gravity;
 }
+if (vspeed > 6) vspeed = 6;
 
-// --- FALL SPEED CAP ---
-var fall_max_speed = 6;
-if (vspeed > fall_max_speed) {
-    vspeed = fall_max_speed;
+// --- COOLDOWN ---
+if (hop_cooldown > 0) {
+    hop_cooldown -= 1;
 }
 
-// --- HORIZONTAL COLLISION SAFE ---
+// --- SLIME STATE MACHINE ---
+switch (slime_state) {
+    case SlimeState.IDLE:
+        image_index = 0; // Frame 1
+        image_speed = 0;
+
+        if (hop_cooldown <= 0 && grounded) {
+            slime_state = SlimeState.WINDUP;
+            animation_timer = 5; // Frames 2–6
+            image_index = 1;
+            image_speed = (5 / animation_timer); // Spread over 5 frames
+        }
+        break;
+
+    case SlimeState.WINDUP:
+        animation_timer -= 1;
+        if (animation_timer <= 0) {
+            slime_state = SlimeState.JUMP;
+
+            var player = instance_nearest(x, y, obj_Player);
+            if (player != noone) {
+                var dx = player.x - x;
+                var dy = player.y - y;
+                var target_x = x + clamp(dx, -64, 64);
+                var target_y = y + clamp(dy, -64, 64);
+                var dir = point_direction(x, y, target_x, target_y);
+
+                hspeed = lengthdir_x(hop_speed, dir);
+                vspeed = jump_strength;
+            }
+
+            image_index = 6; // Start at Frame 7
+            image_speed = 0.5;
+            hop_cooldown = room_speed * 1.5;
+        }
+        break;
+
+    case SlimeState.JUMP:
+        if (grounded) {
+            slime_state = SlimeState.LAND;
+            image_index = 17; // Frame 18
+            image_speed = 0.2;
+            animation_timer = 5;
+        }
+        break;
+
+    case SlimeState.LAND:
+        animation_timer -= 1;
+        if (animation_timer <= 0) {
+            slime_state = SlimeState.IDLE;
+        }
+        break;
+}
+
+
+// --- Cooldown Timer ---
+if (hop_cooldown > 0) {
+    hop_cooldown -= 1;
+}
+
+// --- Gravity ---
+if (!grounded) {
+    vspeed += gravity;
+}
+if (vspeed > 6) {
+    vspeed = 6;
+}
+
+// --- Horizontal Collision ---
 if (place_meeting(x + hspeed, y, obj_CollisionTiles)) {
     var move_x = sign(hspeed);
     repeat(abs(hspeed)) {
@@ -27,7 +95,7 @@ if (place_meeting(x + hspeed, y, obj_CollisionTiles)) {
     x += hspeed;
 }
 
-// --- VERTICAL COLLISION SAFE ---
+// --- Vertical Collision ---
 if (place_meeting(x, y + vspeed, obj_CollisionTiles)) {
     var move_y = sign(vspeed);
     repeat(abs(vspeed)) {
@@ -42,34 +110,7 @@ if (place_meeting(x, y + vspeed, obj_CollisionTiles)) {
     y += vspeed;
 }
 
-// --- FRICTION WHEN LANDED ---
+// --- Friction ---
 if (grounded && abs(hspeed) > 0.1) {
     hspeed = lerp(hspeed, 0, 0.2);
-}
-
-// --- HOP LOGIC ---
-var player = instance_nearest(x, y, obj_Player);
-
-if (player != noone) {
-    var dist_to_player = point_distance(x, y, player.x, player.y);
-
-    if (hop_cooldown > 0) {
-        hop_cooldown -= 1;
-    }
-    else if (grounded && dist_to_player < attack_range) {
-        var dx = player.x - x;
-        var dy = player.y - y;
-
-        var max_hop_distance = 64;
-
-        var target_x = x + clamp(dx, -max_hop_distance, max_hop_distance);
-        var target_y = y + clamp(dy, -max_hop_distance, max_hop_distance);
-
-        var dir = point_direction(x, y, target_x, target_y);
-
-        hspeed = lengthdir_x(hop_speed, dir);
-        vspeed = jump_strength;
-
-        hop_cooldown = room_speed * 1.5;
-    }
 }

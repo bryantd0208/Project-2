@@ -151,7 +151,7 @@ if (current_health <= 0 && !global.game_lost) {
 }
 
 // WIN CONDITION
-if (instance_number(obj_slime) == 0 && !global.game_won) {
-    global.game_won = true;
-    room_goto(rm_Win);
-}
+//if (instance_number(obj_slime) == 0 && !global.game_won) {
+//    global.game_won = true;
+//    room_goto(rm_Win);
+//}
