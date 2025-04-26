@@ -41,12 +41,21 @@ if (current_node != noone && target_node == noone) {
         scr_move_to_adjacent_node(0, 1);
     }
     
-    // Press Space or Enter to enter level
-    if (keyboard_check_pressed(vk_space) || keyboard_check_pressed(vk_enter)) {
-        if (current_node.unlocked) {
-            room_goto(rm_StartingRoom);
+// Press Space or Enter to enter level
+if (keyboard_check_pressed(vk_space) || keyboard_check_pressed(vk_enter)) {
+    if (current_node.unlocked) {
+        var level_room_name = "rm_Level_" + string(current_node.level_id);
+        
+        if (room_exists(asset_get_index(level_room_name))) {
+            room_goto(asset_get_index(level_room_name));
+            show_debug_message("Entering " + level_room_name);
+        }
+        else {
+            show_debug_message("Error: Room " + level_room_name + " does not exist!");
         }
     }
+}
+
 }
 
 // --- Cheat: Alt + L to unlock the next connected level ---

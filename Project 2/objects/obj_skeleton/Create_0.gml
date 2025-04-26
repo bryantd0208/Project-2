@@ -1,3 +1,4 @@
+event_inherited()
 // --- Skeleton Create Event Cleaned ---
 
 enum SkeletonType { MELEE, RANGED }

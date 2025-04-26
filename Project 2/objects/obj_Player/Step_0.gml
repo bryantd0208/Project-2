@@ -111,7 +111,7 @@ if (global.hit_freeze_timer > 0) {
 // --- DAMAGE HANDLING ---
 if (player_state == PlayerState.DAMAGED) {
     if (!damage_taken) {
-        current_health -= 20;
+        current_health -= 30;
         damage_taken = true;
         show_debug_message("Player took damage! HP: " + string(current_health));
     }

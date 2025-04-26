@@ -1,5 +1,3 @@
-// --- Step Event ---
-
 // --- PLAYER TRACKING ---
 var player = instance_nearest(x, y, obj_Player);
 
@@ -15,7 +13,7 @@ if (player != noone) {
             if (variable_instance_exists(id, "skeleton_type")) {
                 scr_perform_attack(skeleton_type);
             } else {
-                perform_attack();
+                scr_perform_attack(0); // default to MELEE if missing
             }
             attack_cooldown = attack_speed;
         }
@@ -26,22 +24,3 @@ if (player != noone) {
 if (attack_cooldown > 0) {
     attack_cooldown -= 1;
 }
-
-// --- GRAVITY ---
-var grounded = place_meeting(x, y + 1, obj_CollisionTiles);
-
-if (!grounded) {
-    vspeed += gravity;
-} else {
-    vspeed = 0;
-}
-
-// --- COLLISION CHECKS ---
-if (place_meeting(x, y + vspeed, obj_CollisionTiles)) {
-    // Prevent falling into floor
-    while (!place_meeting(x, y + sign(vspeed), obj_CollisionTiles)) {
-        y += sign(vspeed);
-    }
-    vspeed = 0;
-}
-y += vspeed;

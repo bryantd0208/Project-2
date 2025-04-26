@@ -10,8 +10,8 @@
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_Button_Parent","path":"objects/obj_Button_Parent/obj_Button_Parent.yy",},"propertyId":{"name":"Button_Text","path":"objects/obj_Button_Parent/obj_Button_Parent.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"Quit Game",},
   ],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"buttons",
+    "path":"folders/Objects/buttons.yy",
   },
   "parentObjectId":{
     "name":"obj_Button_Parent",
