@@ -5,7 +5,7 @@ player_lives = 3;
 points = 0;
 
 // --- Background Transition Setup ---
-background_sprites = [spr_Background1, spr_Background2, spr_Background3];
+background_sprites = [spr_MainMenuBackground, spr_Background2, spr_Background3];
 current_background = 0;
 scroll_x = 0;
 scroll_speed = 6;
