@@ -200,3 +200,28 @@ if (!grounded) {
         vspeed = 0;
     }
 }
+
+// Familiar teleport control
+if (keyboard_check_pressed(ord("F"))) {
+    if (!variable_global_exists("familiar_mode")) global.familiar_mode = 0;
+    global.familiar_mode = (global.familiar_mode + 1) mod 3;
+
+    if (global.familiar_mode == 1) {
+        show_debug_message("Select a location for the familiar.");
+    } else if (global.familiar_mode == 2) {
+        show_debug_message("Familiar locked in place.");
+    } else {
+        show_debug_message("Familiar is following again.");
+    }
+}
+
+
+if (global.familiar_mode == 1 && mouse_check_button_pressed(mb_left)) {
+    global.familiar_target_x = camera_get_view_x(view_camera[0]) + mouse_x;
+    global.familiar_target_y = camera_get_view_y(view_camera[0]) + mouse_y;
+    global.familiar_mode = 2; // Lock familiar after choosing location
+
+    show_debug_message("Familiar target selected at: " + string(global.familiar_target_x) + ", " + string(global.familiar_target_y));
+}
+
+

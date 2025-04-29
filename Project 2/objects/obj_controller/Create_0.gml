@@ -35,11 +35,12 @@ global.gravity_target_scale = 1;
 global.gravity_target_gravity = gravity;
 
 
-global.camera = camera_create_view(0, 0, 800, 600, 0, obj_Player, -1, -1, 800, 600);
+global.camera_main = camera_create_view(0, 0, 800, 600, 0, obj_Player, -1, -1, 800, 600);
+global.camera_minimap = camera_create_view(0, 0, 1920, 1080, 0, obj_Player, -1, -1, 1920, 1080);
 
 
 view_enabled = true;
 view_set_visible(0, true);
-view_set_camera(0, global.camera);
+view_set_camera(0, global.camera_main);
 isLoaded = false;
 

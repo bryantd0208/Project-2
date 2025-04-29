@@ -123,9 +123,9 @@ if (keyboard_check_pressed(ord("R"))) {
 if (instance_exists(obj_Player)) {
     var target_x = obj_Player.x - (800 / 2);
     var target_y = obj_Player.y - (600 / 2);
-    var new_x = lerp(camera_get_view_x(global.camera), target_x, 0.1);
-    var new_y = lerp(camera_get_view_y(global.camera), target_y, 0.1);
-    camera_set_view_pos(global.camera, new_x, new_y);
+    var new_x = lerp(camera_get_view_x(global.camera_main), target_x, 0.1);
+    var new_y = lerp(camera_get_view_y(global.camera_main), target_y, 0.1);
+    camera_set_view_pos(global.camera_main, new_x, new_y);
 }
 
 // --- Export Level (for debugging)

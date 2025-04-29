@@ -1,5 +1,5 @@
 // Check if player (or later maybe even crates?) is standing on it
-if (place_meeting(x, y, obj_Player)) {
+if (place_meeting(x, y, obj_Player) || place_meeting(x, y, obj_familiar)) {
     if (!pressed_by_player) {
         // Player just stepped on it
         state = 1;

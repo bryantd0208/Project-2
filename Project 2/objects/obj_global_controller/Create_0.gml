@@ -11,6 +11,12 @@ if (!variable_global_exists("show_pause_menu")) {
     global.show_pause_menu = false;
 }
 
+// Familiar teleport system globals
+global.familiar_mode = 0; // 0 = follow, 1 = target mode, 2 = locked in place
+global.familiar_target_x = 0;
+global.familiar_target_y = 0;
+
+
 global.section_platforms = ds_map_create();
 // Section 1
 global.section_platforms[0] = [
