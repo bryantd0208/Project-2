@@ -36,7 +36,7 @@ if (visible) {
 if (visible) {
     var margin = 48;
     var box_height = 100;
-    target_y = room_height - margin - box_height - 300; // Final resting position (100px from bottom)
+    target_y = room_height - margin - box_height - 100; // Final resting position (100px from bottom)
 }
 else {
     // Off-screen when invisible

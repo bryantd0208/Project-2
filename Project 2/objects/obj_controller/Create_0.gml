@@ -33,3 +33,13 @@ global.gravity_flip_timer = 0;
 global.gravity_flip_duration = 0;
 global.gravity_target_scale = 1;
 global.gravity_target_gravity = gravity;
+
+
+global.camera = camera_create_view(0, 0, 800, 600, 0, obj_Player, -1, -1, 800, 600);
+
+
+view_enabled = false;
+view_set_visible(0, true);
+view_set_camera(0, global.camera);
+isLoaded = false;
+

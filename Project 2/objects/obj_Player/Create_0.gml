@@ -27,7 +27,7 @@ current_health = max_health;
 gravity_force = 0.3;       // Gravity acceleration per frame
 gravity_flip = 1;           // 1 = normal, -1 = upside down
 fall_max_speed = 4.5;       // Maximum falling speed
-jump_force = 6;       // adjust to your liking (higher = bigger jumps)
+jump_force = 6.5;       // adjust to your liking (higher = bigger jumps)
 // --- Damage Control
 damage_timer = 0;
 damage_taken = false;

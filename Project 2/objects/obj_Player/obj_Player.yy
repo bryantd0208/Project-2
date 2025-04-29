@@ -36,7 +36,7 @@
   "properties":[],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
-  "solid":true,
+  "solid":false,
   "spriteId":{
     "name":"spr_Player1",
     "path":"sprites/spr_Player1/spr_Player1.yy",

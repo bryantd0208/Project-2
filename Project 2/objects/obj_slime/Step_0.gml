@@ -7,13 +7,15 @@ if (!grounded) {
 }
 if (vspeed > 6) vspeed = 6;
 
-// --- COOLDOWN ---
+// --- Cooldown Timer ---
 if (hop_cooldown > 0) {
     hop_cooldown -= 1;
 }
 
 // --- SLIME STATE MACHINE ---
 switch (slime_state) {
+
+    // ---------------- IDLE ----------------
     case SlimeState.IDLE:
         image_index = 0; // Frame 1
         image_speed = 0;
@@ -22,33 +24,40 @@ switch (slime_state) {
             slime_state = SlimeState.WINDUP;
             animation_timer = 5; // Frames 2–6
             image_index = 1;
-            image_speed = (5 / animation_timer); // Spread over 5 frames
+            image_speed = 5 / animation_timer;
         }
         break;
 
+    // ---------------- WINDUP ----------------
     case SlimeState.WINDUP:
         animation_timer -= 1;
         if (animation_timer <= 0) {
-            slime_state = SlimeState.JUMP;
-
             var player = instance_nearest(x, y, obj_Player);
-            if (player != noone) {
-                var dx = player.x - x;
-                var dy = player.y - y;
-                var target_x = x + clamp(dx, -64, 64);
-                var target_y = y + clamp(dy, -64, 64);
-                var dir = point_direction(x, y, target_x, target_y);
 
-                hspeed = lengthdir_x(hop_speed, dir);
-                vspeed = jump_strength;
+            if (player != noone) {
+                var dist = point_distance(x, y, player.x, player.y);
+
+                if (dist <= attack_range) {
+                    var dx = player.x - x;
+                    var dy = player.y - y;
+
+                    var target_x = x + clamp(dx, -64, 64);
+                    var target_y = y + clamp(dy, -64, 64);
+                    var dir = point_direction(x, y, target_x, target_y);
+
+                    hspeed = lengthdir_x(hop_speed, dir);
+                    vspeed = jump_strength;
+                }
             }
 
+            slime_state = SlimeState.JUMP;
             image_index = 6; // Start at Frame 7
             image_speed = 0.5;
-            hop_cooldown = room_speed * 1.5;
+            hop_cooldown = room_speed * 1.5; // ~1.5 second cooldown
         }
         break;
 
+    // ---------------- JUMP ----------------
     case SlimeState.JUMP:
         if (grounded) {
             slime_state = SlimeState.LAND;
@@ -58,26 +67,13 @@ switch (slime_state) {
         }
         break;
 
+    // ---------------- LAND ----------------
     case SlimeState.LAND:
         animation_timer -= 1;
         if (animation_timer <= 0) {
             slime_state = SlimeState.IDLE;
         }
         break;
-}
-
-
-// --- Cooldown Timer ---
-if (hop_cooldown > 0) {
-    hop_cooldown -= 1;
-}
-
-// --- Gravity ---
-if (!grounded) {
-    vspeed += gravity;
-}
-if (vspeed > 6) {
-    vspeed = 6;
 }
 
 // --- Horizontal Collision ---
