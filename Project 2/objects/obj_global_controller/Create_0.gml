@@ -3,7 +3,6 @@
 global.current_level = 1; // 🔥 Now it's truly global
 global.levels_unlocked = [1]; // 🔥 Now it's truly global
 global.player_lives = 3;
-global.points = 0; 
 global.background_sprites = [];
 
 if (!variable_global_exists("game_won")) global.game_won = false;
@@ -11,15 +10,10 @@ if (!variable_global_exists("game_lost")) global.game_lost = false;
 if (!variable_global_exists("show_pause_menu")) {
     global.show_pause_menu = false;
 }
+
 global.section_platforms = ds_map_create();
-//global.section_objects = 
-
-
-// Create the global dictionary (if you haven't already)
-global.section_platforms = ds_map_create();
-
-// Assign a big array of arrays to key -1
-global.section_platforms[1] = [
+// Section 1
+global.section_platforms[0] = [
     ["obj_CollisionTiles",384,896,1,1,0],["obj_CollisionTiles",352,896,1,1,0],["obj_CollisionTiles",320,896,1,1,0],["obj_CollisionTiles",288,896,1,1,0],
     ["obj_CollisionTiles",256,896,1,1,0],["obj_CollisionTiles",224,896,1,1,0],["obj_CollisionTiles",192,896,1,1,0],["obj_CollisionTiles",160,896,1,1,0],
     ["obj_CollisionTiles",128,896,1,1,0],["obj_CollisionTiles",96,896,1,1,0],["obj_CollisionTiles",64,896,1,1,0],["obj_CollisionTiles",32,896,1,1,0],
@@ -61,8 +55,8 @@ global.section_platforms[1] = [
     ["obj_CollisionTiles",640,992,1,1,0],["obj_CollisionTiles",608,992,1,1,0],["obj_CollisionTiles",576,992,1,1,0],["obj_CollisionTiles",544,992,1,1,0],
     ["obj_CollisionTiles",512,992,1,1,0],["obj_CollisionTiles",480,992,1,1,0],["obj_CollisionTiles",448,992,1,1,0]
 ];
-
-global.section_platforms[2] = [
+// Section 2
+global.section_platforms[1] = [
     ["obj_CollisionTiles",1952,704,1,1,0],["obj_CollisionTiles",1920,704,1,1,0],["obj_CollisionTiles",1296,583,1,1,0],["obj_CollisionTiles",1264,583,1,1,0],
     ["obj_CollisionTiles",1232,583,1,1,0],["obj_CollisionTiles",1072,612,1,1,0],["obj_CollisionTiles",1040,612,1,1,0],["obj_CollisionTiles",1008,612,1,1,0],
     ["obj_CollisionTiles",976,612,1,1,0],["obj_CollisionTiles",944,612,1,1,0],["obj_CollisionTiles",912,612,1,1,0],["obj_CollisionTiles",880,612,1,1,0],
@@ -104,9 +98,8 @@ global.section_platforms[2] = [
     ["obj_CollisionTiles",640,992,1,1,0],["obj_CollisionTiles",608,992,1,1,0],["obj_CollisionTiles",576,992,1,1,0],["obj_CollisionTiles",544,992,1,1,0],
     ["obj_CollisionTiles",512,992,1,1,0],["obj_CollisionTiles",480,992,1,1,0],["obj_CollisionTiles",448,992,1,1,0]
 ];
-
-
-global.section_platforms[0] = [
+// Section 3
+global.section_platforms[2] = [
     ["obj_CollisionTiles", 345, 61, 8, 1, 0],
     ["obj_CollisionTiles", 576, 160, 3, 1, 0],
     ["obj_CollisionTiles", 896, 32, 12, 1, 0],
@@ -129,3 +122,5 @@ global.section_platforms[0] = [
     ["obj_CollisionTiles", 576, 608, 3.5, 1, 0],
     ["obj_CollisionTiles", 192, 747, 14, 1, 0]
 ];
+
+global.section_objects = ds_map_create();

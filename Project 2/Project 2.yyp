@@ -91,6 +91,7 @@
     {"id":{"name":"platform6","path":"sprites/platform6/platform6.yy",},},
     {"id":{"name":"spr_Background2","path":"sprites/spr_Background2/spr_Background2.yy",},},
     {"id":{"name":"spr_Background3","path":"sprites/spr_Background3/spr_Background3.yy",},},
+    {"id":{"name":"spr_bat_flying","path":"sprites/spr_bat_flying/spr_bat_flying.yy",},},
     {"id":{"name":"spr_Button","path":"sprites/spr_Button/spr_Button.yy",},},
     {"id":{"name":"spr_CollisionTiles","path":"sprites/spr_CollisionTiles/spr_CollisionTiles.yy",},},
     {"id":{"name":"spr_door","path":"sprites/spr_door/spr_door.yy",},},

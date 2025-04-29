@@ -22,6 +22,32 @@ if (!isLoaded) {
             inst.visible = true;
         }
     }
+	show_debug_message(current_background_index);
+var id1 = layer_get_id("Assets_1");
+var id2 = layer_get_id("Assets_2");
+var id3 = layer_get_id("Assets_3");
+
+// First: hide all
+layer_set_visible(id1, false);
+layer_set_visible(id2, false);
+layer_set_visible(id3, false);
+
+// Then toggle only the correct one
+if (current_background_index == -1) {
+    layer_set_visible(id1, true);
+    show_debug_message("Showing Section 1");
+}
+else if (current_background_index == 0) {
+    layer_set_visible(id2, true);
+    show_debug_message("Showing Section 2");
+}
+else if (current_background_index == 1) {
+    layer_set_visible(id3, true);
+    show_debug_message("Showing Section 3");
+}
+else {
+    show_debug_message("Unrecognized section");
+}
 
     isLoaded = true;
 }
@@ -110,9 +136,10 @@ if (keyboard_check_pressed(ord("L"))) {
 
 if (keyboard_check_pressed(ord("H"))) {
     // Toggle Asset_1 layer visibility
-    var layer_id = layer_get_id("Assets_1");
+    var layer_id = layer_get_id("Assets_2");
     var is_visible = layer_get_visible(layer_id);
     layer_set_visible(layer_id, !is_visible);
 
 }
 
+		

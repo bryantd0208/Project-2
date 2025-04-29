@@ -1,3 +1,4 @@
+event_inherited()
 // --- Physics Setup ---
 gravity = 0.3;
 vspeed = 0;

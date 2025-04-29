@@ -46,3 +46,9 @@ wall_dir = 0; // -1 for left wall, 1 for right wall
 wall_slide_speed = 1; // How fast player slides down the wall
 wall_jump_h_force = 3; // Horizontal push off
 wall_jump_v_force = 5.5; // Upward force (same or a little less than normal jump)
+
+climbing = false;
+gravity_force = 0.3;
+fall_max_speed = 4.5;
+jump_force = 6.5;
+climb_speed = 1.5;
