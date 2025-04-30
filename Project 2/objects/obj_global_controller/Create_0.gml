@@ -130,3 +130,58 @@ global.section_platforms[2] = [
 ];
 
 global.section_objects = ds_map_create();
+
+// Section 1 (Objects)
+global.section_objects[0] = [
+    ["obj_slime", 224, 689.5, 1, 1, 0],
+    ["obj_slime", 1408, 273.5, 1, 1, 0],
+    ["obj_slime", 1696, 113.2, 1, 1, 0],
+    ["obj_slime", 960, 495.4, 1, 1, 0],
+    ["obj_slime", 1376, 785.5, 1, 1, 0],
+    ["obj_slime", 576, 977.5, 1, 1, 0],
+    ["obj_Switch", 128, 240, 1, 1, 0, 3, 0],
+    ["obj_Switch", 64, 667, 1, 1, 0, 2, 0],
+    ["obj_Switch", 1823, 667, 1, 1, 0, 1, 0]
+];
+
+// Section 2 (Objects)
+global.section_objects[1] = [
+    ["obj_slime", 928, 495.4, 1, 1, 0],
+    ["obj_slime", 1440, 785.5, 1, 1, 0],
+    ["obj_slime", 1728, 689.3, 1, 1, 0],
+    ["obj_slime", 256, 689.5, 1, 1, 0],
+    ["obj_slime", 1024, 273.5, 1, 1, 0],
+    ["obj_bat", 736, 831.35, -1, 1, 0],
+    ["obj_bat", 416, 415.98, -1, 1, 0],
+    ["obj_bat", 1312, 639.55, -1, 1, 0],
+    ["obj_bat", 1440, 64.55, -1, 1, 0],
+    ["obj_Switch", 1280, 608, 1, 1, 0, 4, 1],
+    ["obj_Switch", 992, 890, 1, 1, 0, 3, 1],
+    ["obj_Switch", 1472, 440, 1, 1, 0, 2, 0],
+    ["obj_Switch", 1664, 88, 1, 1, 0, 1, 1],
+    ["obj_pressureplate", 96, 256, 0.6, 1, 0, 1],
+    ["obj_pressureplate", 480, 960, 0.6, 1, 0, 2]
+];
+
+// Section 3 (Objects)
+global.section_objects[2] = [
+    ["obj_slime", 1536, 945.4, 1, 1, 0],
+    ["obj_slime", 1472, 561.4, 1, 1, 0],
+    ["obj_bat", 896, 116.07, -1, 1, 0],
+    ["obj_bat", 1504, 404.2, -1, 1, 0],
+    ["obj_bat", 1792, 277.11, -1, 1, 0],
+    ["obj_skeleton", 1184, 987.5, -1, 1, 0],
+    ["obj_skeleton", 64, 341.5, -1, 1, 0],
+    ["obj_skeleton", 160, 988.8, -1, 1, 0],
+    ["obj_Switch", 288, 105, 1, 1, 0, 4, 1],
+    ["obj_Switch", 1024, 192, 1, 1, 0, 3, 1],
+    ["obj_Switch", 1025, 56, 1, 1, 0, 2, 1],
+    ["obj_Switch", 96, 992, 1, 1, 0, 1, 1],
+    ["obj_pressureplate", 1408, 544, 0.6, 1, 0, 6],
+    ["obj_pressureplate", 1056, 547, 1, 1, 0, 5],
+    ["obj_pressureplate", 1312, 59, 0.6, 1, 0, 3],
+    ["obj_pressureplate", 512, 864, 0.6, 1, 0, 1],
+    ["obj_pressureplate", 1824, 768, 0.6, 1, 0, 3],
+    ["obj_pressureplate", 1248, 996, 1, 1, 0, 2],
+    ["obj_Door", 1824, 441, 1, 1, 0]
+];

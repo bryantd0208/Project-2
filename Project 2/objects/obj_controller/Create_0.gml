@@ -15,7 +15,7 @@ section_width = 1920; // <<< Important so scripts can use it
 
 background_sprites = [spr_Background2, spr_Background3]; 
 // Only the NEXT backgrounds (spr_Background1 is already room's default)
-current_background_index = -1; 
+current_background_index =-1; 
 section_width = 1920; // Size of screen
 wrong_way_lines = [
     "Something tells me I shouldn't go over there.",
@@ -44,3 +44,8 @@ view_set_visible(0, true);
 view_set_camera(0, global.camera_main);
 isLoaded = false;
 
+fade_alpha = 0;
+fade_speed = 0.1;
+is_fading = false;
+fade_direction = 1; // 1 = fade out, -1 = fade in
+callback = noone;
