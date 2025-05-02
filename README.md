@@ -14,28 +14,34 @@
 
 ### Controls:
 - **W, A, S, D** – Move
-- **Space** – Attack
-- **Ctrl** – Block attacks in the direction you're facing
 - **Shift** – Run
 - **W (tap or hold)** – Adjustable jump height for skillful traversal
-- **P** – Toggle the pause menu (test version)
-- **Escape** – Opens a test dialogue box (advance with **Enter** or **Left Mouse Click**)
-- **Alt + L** – (In level hub) Unlocks the next level on the map (test functionality)
+- **Space** – Attack
+- **Ctrl** – Block attacks in the direction you're facing
+- **F** – Toggle teleport mode for the familiar
+- **Left Mouse Click** – When in teleport mode, click to place the familiar
+- **P** – Toggle the pause menu
+  - In pause menu: **R** to resume, **Q** to quit
+
+
+---
 
 ### Gameplay Summary:
 You play as **Zero**, a spirit who awakens underground in a mysterious cavern. Combat is currently available against **slimes**, and more enemies like **skeletons** and **bosses** are under development.
 
-- Defeat all enemies in the level to win
-- The "end of level" is currently triggered by clearing the room
-- Future levels will feature doors and portals for progression
-- Slimes hop and attack — more enemy types coming soon
-- Currently includes **adjustable jumping** and a **pause menu overlay**
+- Defeat all enemies in a level to progress
+- A temporary level-clearing system is in place
+- Levels include puzzle mechanics, such as pressure plates and switches
+- The **Familiar**, once teleported, can stay on pressure plates to unlock doors or activate mechanics
 
 ---
 
 ## 🧪 Cheat Codes (For Testing)
 
 - **Alt + L** – Unlock the next level on the map (currently only one implemented)
+- **R** – Reset the current room
+- **M** – Toggle the minimap display
+- **Escape** – Opens a test dialogue box (advance with **Enter** or **Left Mouse Click**)
 
 ---
 
@@ -43,8 +49,9 @@ You play as **Zero**, a spirit who awakens underground in a mysterious cavern. C
 
 ### All custom art (made by the team):
 - Player sprite
-- Ground tile
-- UI/menus and pause panel
+- Ground tiles
+- User Interface (menus, pause panel)
+- Familiar and teleport system effects
 
 ### External Art Resources:
 - **Slime Sprite**  
@@ -67,23 +74,26 @@ You play as **Zero**, a spirit who awakens underground in a mysterious cavern. C
 **Players:** 1
 
 ### Game Concept:
-Explore a mysterious underground world filled with life, danger, and corrupted deities. Battle enemies, solve puzzles, and use gravity-flipping mechanics to reach new areas.
+Explore a mysterious underground world filled with life, danger, and corrupted deities. Battle enemies, solve puzzles, and use gravity-flipping mechanics to reach new areas. Teleport your companion to solve spatial puzzles and unlock progress through environmental interaction.
 
 ### Current Features:
-- 1 level implemented with full combat loop
-- Functioning hub space for level selection
-- Adjustable jump, directional blocking, and running
-- Test dialogue system and pause overlay
+- 1 level implemented with a full combat loop
+- Functional hub space for level selection
+- Adjustable jump, directional blocking, running
+- Familiar teleportation system (via **F** + mouse click)
+- Pressure plate and lever logic puzzles
+- Test dialogue system and pause menu
+- Minimap toggle and reset system
 
 ### Future Plans:
-- Skeleton and flying enemies
-- Level unlocking via portals and puzzles
+- Skeleton and flying enemies with unique AI
 - Boss fight: **Garuda**, the corrupted Bird Deity
-- Additional levels, hub enhancements, and skill trees
+- Full level progression with unlocks and portals
+- Skill trees and ability upgrades
+- Finalized sound/music design
 
 ---
 
 ## ✨ Special Thanks
 - Dwayne Jarvis (Screaming Brain Studios – CC0 assets)
 - ChatGPT (for AI-generated placeholder art concepts and copywriting support)
-

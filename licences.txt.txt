@@ -1,44 +1,70 @@
-LICENSES AND ASSET CREDITS
+LICENSES AND ASSET CREDITS  
 ==========================
 
-All original assets created by the Trash Pandas team (including the player sprite, UI elements, ground tiles, menus, text systems, and gameplay systems) are owned and created by the development team. These assets are free to use within this game project and are not to be redistributed separately without permission.
+All original assets created by the Trash Pandas team (including the player sprite, UI elements, ground tiles, menus, text systems, gameplay logic, and code) are owned and created by the development team. These assets are free to use within this game project and are not to be redistributed separately without permission.
 
 ---
 
-3RD PARTY ASSETS USED
+3RD PARTY ASSETS USED  
 ----------------------
 
-🔹 **Slime Sprite**
-- Source: https://opengameart.org/content/10-fantasy-rpg-enemies
-- License: CC-BY 3.0
-- Notes: While the base image was downloaded, the animation and frame cleanup were done by the Trash Pandas team.
+🔹 **Slime Sprite**  
+- Source: https://opengameart.org/content/10-fantasy-rpg-enemies  
+- License: CC-BY 3.0  
+- Creator: surt  
+- Notes: Animation frames were cleaned and modified by the Trash Pandas team.
 
-🔹 **Sword Slash Effect**
-- Source: https://spikerman.itch.io/sword-slashes
-- License: Free for personal/commercial use (per itch.io page)
-- Creator: Spikerman
-- Notes: Used with no modification.
+🔹 **Sword Slash Effect**  
+- Source: https://spikerman.itch.io/sword-slashes  
+- License: Free for personal/commercial use (per itch.io license)  
+- Creator: Spikerman  
+- Notes: Used as-is.
 
-🔹 **Temporary Tile Art**
-- Creator: Screaming Brain Studios
-- License: CC0 / Public Domain
-- Source: Screaming Brain Studios CC0 Asset Collection
-- Rights: “You are free to use these assets in any and all projects, commercial or non-commercial, with no restrictions, and can be released with or without credit.”
+🔹 **Temporary Tile Art**  
+- Creator: Screaming Brain Studios  
+- License: CC0 / Public Domain  
+- Source: Screaming Brain Studios Asset Collection  
+- Rights: “Free to use in any and all projects, commercial or non-commercial, with no restrictions, and can be released with or without credit.”
+
+🔹 **Skeleton Summoner Sprite**  
+- Source: https://penusbmic.itch.io/the-dark-series-the-skeleton-summoner  
+- License: Free for commercial and personal use (check page for updates)  
+- Creator: penusbmic  
+- Notes: Used with minor adjustments for animation timing.
+
+🔹 **Bat Sprite Animations (2D Pixel Art)**  
+- Source: https://eduardscarpato.itch.io/bat-animations-pixel-art-2d-free  
+- License: Free asset (confirm terms on page)  
+- Creator: Eduard Scarpato  
+- Notes: Used as-is for flying enemy prototype.
 
 ---
 
-AI-GENERATED IMAGES (For Prototyping/Reference Only)
------------------------------------------------------
-These images were generated with ChatGPT using text prompts for concept visualization. They are NOT used as in-game assets but served as placeholder or promotional art during development.
+AUDIO  
+-----
 
-Image Credits: ChatGPT  
-Prompts used included:
+🔹 **Sound Effects**  
+- Generated using: https://elevenlabs.io/app/sound-effects/generate  
+- License: Per ElevenLabs terms — generated content is royalty-free and licensed for commercial and non-commercial use by the creator.
+
+All other audio effects used in this game were either:
+- **Generated in-house**, or  
+- **Downloaded from royalty-free sources with proper license support.**
+
+---
+
+AI-GENERATED IMAGES (For Concept/Prototyping Use Only)  
+-------------------------------------------------------
+
+These were generated using ChatGPT's image tool for early prototyping and design references.  
+These are **not in-game assets** and were used only for internal brainstorming and promotional material.
+
+Prompts used:
 - “Create a mythical creature that is hooded and is in a similar art style to Hollow Knight”
 - “Create an image of a corrupted bird wyvern fighting a hero in a 2D platformer game”
 - “Create a title screen for the game: Remembrance”
 
-These images are for non-commercial, internal use only.
+Image Credits: ChatGPT  
+Use: Non-commercial, internal use only.
 
 ---
-
-Thank you to all open-source artists and developers who helped make this prototype possible.
