@@ -233,3 +233,17 @@ visible = true;
 image_alpha = 1;
 image_blend = c_white;
 depth = -10000;
+
+// --- PASSIVE HEALTH REGEN ---
+if (player_state != PlayerState.ATTACKING && player_state != PlayerState.RUNNING && grounded && current_health < max_health) {
+    regen_timer += 1;
+
+    if (regen_timer >= regen_interval) {
+        current_health = min(current_health + regen_amount, max_health);
+        regen_timer = 0;
+
+    }
+} else {
+    // Reset timer if the player is active
+    regen_timer = 0;
+}

@@ -55,6 +55,32 @@ function scr_export_level(section_index) {
         }
     }
 
+if (object_exists(obj_scene)) {
+    with (obj_scene) {
+        var obj_name = object_get_name(object_index);
+        var serialized_lines = "";
+
+        for (var i = 0; i < array_length(dialogue_lines); i++) {
+            serialized_lines += dialogue_lines[i];
+            if (i < array_length(dialogue_lines) - 1) {
+                serialized_lines += "|"; // Delimiter
+            }
+        }
+
+        var sprite_name = (portrait_sprite != -1) ? sprite_get_name(portrait_sprite) : "";
+
+        var export_data = [
+            obj_name,
+            x, y,
+            image_xscale, image_yscale, image_angle,
+            serialized_lines,
+            sprite_name
+        ];
+
+        array_push(object_list, export_data);
+    }
+}
+
     show_debug_message("section_platforms[" + string(section_index) + "] = " + string(platform_list) + ";");
     show_debug_message("section_objects[" + string(section_index) + "] = " + string(object_list) + ";");
 }

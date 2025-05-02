@@ -4,7 +4,11 @@ event_inherited()
 enum SkeletonType { MELEE, RANGED }
 enum SkeletonState { IDLE, WINDUP, SLIDE, LAND }
 
-skeleton_type = SkeletonType.RANGED;
+if (random(1) < 0.45) {
+    skeleton_type = SkeletonType.RANGED;
+} else {
+    skeleton_type = SkeletonType.MELEE;
+}
 skeleton_state = SkeletonState.IDLE;
 if (skeleton_type == SkeletonType.MELEE) {
     move_speed = random_range(1.2, 2.0);

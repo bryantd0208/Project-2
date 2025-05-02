@@ -72,17 +72,23 @@ for (var section_index = 0; section_index < 3; section_index++) {
     ["obj_CollisionTiles",640,992,1,1,0],["obj_CollisionTiles",608,992,1,1,0],["obj_CollisionTiles",576,992,1,1,0],["obj_CollisionTiles",544,992,1,1,0],
     ["obj_CollisionTiles",512,992,1,1,0],["obj_CollisionTiles",480,992,1,1,0],["obj_CollisionTiles",448,992,1,1,0]
 			];
-            objects = [
-    ["obj_slime", 224, 689.5, 1, 1, 0],
-    ["obj_slime", 1408, 273.5, 1, 1, 0],
-    ["obj_slime", 1696, 113.2, 1, 1, 0],
-    ["obj_slime", 960, 495.4, 1, 1, 0],
-    ["obj_slime", 1376, 785.5, 1, 1, 0],
+objects = [
     ["obj_slime", 576, 977.5, 1, 1, 0],
-    ["obj_Switch", 128, 240, 1, 1, 0, 3, 0],
+    ["obj_slime", 1376, 785.5, 1, 1, 0],
+    ["obj_slime", 960, 495.4, 1, 1, 0],
+    ["obj_slime", 1696, 113.5, 1, 1, 0],
+    ["obj_slime", 1408, 273.5, 1, 1, 0],
+    ["obj_slime", 151.99, 689.4, 1, 1, 0],
+    ["obj_Switch", 1823, 667, 1, 1, 0, 1, 0],
     ["obj_Switch", 64, 667, 1, 1, 0, 2, 0],
-    ["obj_Switch", 1823, 667, 1, 1, 0, 1, 0]
+    ["obj_Switch", 128, 240, 1, 1, 0, 3, 0],
+    ["obj_marker", 352, 640, 1, 1, 0, 4],
+    ["obj_marker", 256, 640, 1, 1, 0, 3],
+    ["obj_marker", 160, 640, 1, 1, 0, 2],
+    ["obj_marker", 64, 640, 1, 1, 0, 1],
+    ["obj_scene", 1056, 448, 1, 1, 0, "Placeholder Text. Add more to select from|Text 2|Text 5", "spr_zero_text"]
 ];
+
             break;
         case 1:
             platforms = [

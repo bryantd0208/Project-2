@@ -15,7 +15,7 @@ section_width = 1920; // <<< Important so scripts can use it
 
 background_sprites = [spr_Background2, spr_Background3]; 
 // Only the NEXT backgrounds (spr_Background1 is already room's default)
-current_background_index =-1; 
+current_background_index =1; 
 section_width = 1920; // Size of screen
 wrong_way_lines = [
     "Something tells me I shouldn't go over there.",
@@ -40,7 +40,7 @@ global.camera_main = camera_create_view(0, 0, 800, 600, 0, obj_Player, -1, -1, 8
 global.camera_minimap = camera_create_view(0, 0, 1920, 1080, 0, obj_Player, -1, -1, 1920, 1080);
 
 
-view_enabled = false;
+view_enabled = true;
 view_set_visible(0, true);
 view_set_camera(0, global.camera_main);
 isLoaded = false;

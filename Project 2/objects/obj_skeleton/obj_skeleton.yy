@@ -40,8 +40,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_Player1",
-    "path":"sprites/spr_Player1/spr_Player1.yy",
+    "name":"spr_skeleton_melee_idle",
+    "path":"sprites/spr_skeleton_melee_idle/spr_skeleton_melee_idle.yy",
   },
   "spriteMaskId":null,
   "visible":true,

@@ -33,7 +33,6 @@ if (player != noone) {
     var distance = point_distance(x, y, player.x, player.y);
 
     if (skeleton_type == SkeletonType.MELEE) {
-        // Only MELEE skeletons move toward the player
         var move_dir = sign(player.x - x);
         var test_x = x + move_dir;
 
@@ -65,7 +64,6 @@ if (player != noone) {
         }
     }
     else if (skeleton_type == SkeletonType.RANGED) {
-        // Ranged skeletons stay completely still
         hspeed = 0;
     }
 } else {
@@ -80,14 +78,14 @@ if (hspeed != 0) {
         x += move_x;
     } else {
         if (grounded) {
-            vspeed = -5.5; // Hop velocity
+            vspeed = -5.5;
         } else {
             hspeed = 0;
         }
     }
 }
 
-// --- Extra Gravity (optional safety pass) ---
+// --- Extra Gravity ---
 if (!place_meeting(x, y + 1, obj_CollisionTiles)) {
     vspeed += gravity_force;
     if (vspeed > fall_max_speed) vspeed = fall_max_speed;
@@ -108,4 +106,41 @@ if (place_meeting(x, y + vspeed, obj_CollisionTiles)) {
     vspeed = 0;
 } else {
     y += vspeed;
+}
+
+// --- LANDING RECENTLY TIMER ---
+if (grounded && !was_grounded) {
+    has_landed_recently = true;
+    landed_timer = landed_cooldown;
+}
+if (has_landed_recently) {
+    landed_timer -= 1;
+    if (landed_timer <= 0) {
+        has_landed_recently = false;
+    }
+}
+was_grounded = grounded;
+
+// === SPRITE CONTROL ===
+if (skeleton_type == SkeletonType.MELEE) {
+    if (enemy_hp <= 0) {
+        sprite_index = spr_skeleton_melee_death;
+    }
+    else if (attack_cooldown > 0 && player != noone && point_distance(x, y, player.x, player.y) < attack_range) {
+        sprite_index = spr_skeleton_melee_attack;
+    }
+    else {
+        sprite_index = spr_skeleton_melee_idle;
+    }
+}
+else if (skeleton_type == SkeletonType.RANGED) {
+    if (enemy_hp <= 0) {
+        sprite_index = spr_skeleton_archer_death;
+    }
+    else if (attack_cooldown > 0 && player != noone && point_distance(x, y, player.x, player.y) < attack_range) {
+        sprite_index = spr_skeleton_archer_attack;
+    }
+    else {
+        sprite_index = spr_skeleton_archer_idle;
+    }
 }

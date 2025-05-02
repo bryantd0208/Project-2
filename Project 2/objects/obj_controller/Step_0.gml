@@ -10,7 +10,11 @@ function scr_create_object_from_data(name, x, y, xscale, yscale, angle) {
     inst.image_yscale = yscale;
     inst.image_angle = angle;
 
-    if (inst.sprite_index == -1) inst.sprite_index = spr_CollisionTileTest;
+    // ✅ Safe fallback sprite assignment
+    if (inst.sprite_index == -1 && object_exists(obj_CollisionTiles)) {
+        inst.sprite_index = object_get_sprite(obj_CollisionTiles);
+    }
+
     inst.visible = true;
     inst.image_alpha = 1;
     inst.image_blend = c_white;
@@ -62,10 +66,15 @@ if (!isLoaded) {
         if (o[0] == "obj_Switch" && array_length(o) >= 8) {
             inst.lever_id = o[6];
             inst.is_locked = o[7];
-            inst.section_index = current_background_index; // ✅ Pass section index to switch
+            inst.section_index = current_background_index;
         } else if (o[0] == "obj_pressureplate" && array_length(o) >= 7) {
             inst.plate_id = o[6];
-            inst.section_index = current_background_index; // ✅ Pass section index to plate
+            inst.section_index = current_background_index;
+        } else if (o[0] == "obj_scene" && array_length(o) >= 8) {
+            inst.dialogue_lines = string_split(o[6], "|");
+            inst.portrait_sprite = asset_get_index(o[7]);
+        } else if (o[0] == "obj_marker" && array_length(o) >= 7) {
+            inst.marker_id = o[6];
         }
     }
 
@@ -90,7 +99,6 @@ if (!isLoaded) {
 
     isLoaded = true;
 }
-
 
 
 

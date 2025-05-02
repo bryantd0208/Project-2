@@ -21,7 +21,7 @@ player_speed = base_speed;
 
 // --- Health
 max_health = 100;
-current_health = max_health;
+current_health = 100;
 
 // --- Gravity Control (manual!)
 gravity_force = 0.3;       // Gravity acceleration per frame
@@ -52,3 +52,7 @@ gravity_force = 0.3;
 fall_max_speed = 4.5;
 jump_force = 6.5;
 climb_speed = 1.5;
+
+regen_timer = 0;             // Counts up for healing
+regen_interval = 90;         // Frames between each heal tick (e.g., 1.5 seconds at 60 FPS)
+regen_amount = 10;            // How much to heal per tick
