@@ -1,12 +1,9 @@
 {
   "$GMObject":"",
-  "%Name":"obj_CollisionTiles",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "%Name":"obj_marker",
+  "eventList":[],
   "managed":true,
-  "name":"obj_CollisionTiles",
+  "name":"obj_marker",
   "overriddenProperties":[],
   "parent":{
     "name":"Objects",
@@ -26,14 +23,13 @@
   "physicsShape":1,
   "physicsShapePoints":[],
   "physicsStartAwake":true,
-  "properties":[],
+  "properties":[
+    {"$GMObjectProperty":"v1","%Name":"marker_id","filters":[],"listItems":[],"multiselect":false,"name":"marker_id","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
+  ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
-  "solid":true,
-  "spriteId":{
-    "name":"spr_CollisionTiles",
-    "path":"sprites/spr_CollisionTiles/spr_CollisionTiles.yy",
-  },
+  "solid":false,
+  "spriteId":null,
   "spriteMaskId":null,
-  "visible":false,
+  "visible":true,
 }

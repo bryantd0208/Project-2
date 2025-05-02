@@ -59,7 +59,7 @@ if (instance_exists(obj_Player)) {
         // Follow logic
         follow_timer += 1;
         if (follow_timer > 30) {
-            follow_distance = 40 + irandom_range(0, 40);
+            follow_distance = 20 + irandom_range(1, 10);
             follow_timer = 0;
         }
 
@@ -98,3 +98,12 @@ if (instance_exists(obj_Player)) {
         y += vspeed;
     }
 }
+
+if (sprite_index == -1) {
+    sprite_index = spr_CollisionTileTest;
+}
+
+visible = true;
+image_alpha = 1;
+image_blend = c_white;
+depth = -10000;

@@ -29,33 +29,80 @@ switch (slime_state) {
         break;
 
     // ---------------- WINDUP ----------------
-    case SlimeState.WINDUP:
-        animation_timer -= 1;
-        if (animation_timer <= 0) {
-            var player = instance_nearest(x, y, obj_Player);
+case SlimeState.WINDUP:
+    animation_timer -= 1;
+    if (animation_timer <= 0) {
+        var player = instance_nearest(x, y, obj_Player);
+        var jumped = false;
 
-            if (player != noone) {
-                var dist = point_distance(x, y, player.x, player.y);
+        if (player != noone) {
+            var dist = point_distance(x, y, player.x, player.y);
 
-                if (dist <= attack_range) {
-                    var dx = player.x - x;
-                    var dy = player.y - y;
+            if (dist <= attack_range) {
+                var dx = player.x - x;
+                var dy = player.y - y;
 
-                    var target_x = x + clamp(dx, -64, 64);
-                    var target_y = y + clamp(dy, -64, 64);
-                    var dir = point_direction(x, y, target_x, target_y);
+                var target_x = x + clamp(dx, -64, 64);
+                var target_y = y + clamp(dy, -64, 64);
+                var dir = point_direction(x, y, target_x, target_y);
 
-                    hspeed = lengthdir_x(hop_speed, dir);
-                    vspeed = jump_strength;
-                }
+                hspeed = lengthdir_x(hop_speed, dir);
+                vspeed = jump_strength;
+                jumped = true;
             }
-
-            slime_state = SlimeState.JUMP;
-            image_index = 6; // Start at Frame 7
-            image_speed = 0.5;
-            hop_cooldown = room_speed * 1.5; // ~1.5 second cooldown
         }
-        break;
+
+// Try to follow a marker path if not attacking player
+if (!jumped) {
+    // Look for the next marker based on current_marker_id and direction
+    marker_target = noone;
+    var best_distance = 300;
+
+    with (obj_marker) {
+        if (marker_id == other.current_marker_id) {
+            var dist = point_distance(other.x, other.y, x, y);
+            if (dist < best_distance) {
+                best_distance = dist;
+                other.marker_target = id;
+            }
+        }
+    }
+
+    if (marker_target != noone) {
+        var dir = point_direction(x, y, marker_target.x, marker_target.y);
+        hspeed = lengthdir_x(hop_speed, dir);
+        vspeed = jump_strength;
+
+        // Prepare for next marker
+        if (marker_forward) {
+            current_marker_id += 1;
+        } else {
+            current_marker_id -= 1;
+        }
+
+        // If no marker with next ID exists, reverse direction
+        var found = false;
+        with (obj_marker) {
+            if (marker_id == other.current_marker_id) {
+                found = true;
+            }
+        }
+
+        if (!found) {
+            marker_forward = !marker_forward;
+            current_marker_id += marker_forward ? 1 : -1;
+        }
+    }
+}
+
+
+        slime_state = SlimeState.JUMP;
+        image_index = 6;
+        image_speed = 0.5;
+        hop_cooldown = room_speed * 1.5;
+    }
+    break;
+
 
     // ---------------- JUMP ----------------
     case SlimeState.JUMP:

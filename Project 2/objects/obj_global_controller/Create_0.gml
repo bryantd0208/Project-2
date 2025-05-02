@@ -1,25 +1,36 @@
 // obj_global_controller Create Event
 
-global.current_level = 1; // 🔥 Now it's truly global
-global.levels_unlocked = [1]; // 🔥 Now it's truly global
+// --- Game State Initialization ---
+global.current_level = 1;
+global.levels_unlocked = [1];
 global.player_lives = 3;
 global.background_sprites = [];
 
-if (!variable_global_exists("game_won")) global.game_won = false;
-if (!variable_global_exists("game_lost")) global.game_lost = false;
-if (!variable_global_exists("show_pause_menu")) {
-    global.show_pause_menu = false;
-}
+global.game_won = variable_global_exists("game_won") ? global.game_won : false;
+global.game_lost = variable_global_exists("game_lost") ? global.game_lost : false;
+global.show_pause_menu = variable_global_exists("show_pause_menu") ? global.show_pause_menu : false;
 
-// Familiar teleport system globals
 global.familiar_mode = 0; // 0 = follow, 1 = target mode, 2 = locked in place
 global.familiar_target_x = 0;
 global.familiar_target_y = 0;
 
+// --- Master Level Map ---
+global.levels = ds_map_create();
 
-global.section_platforms = ds_map_create();
-// Section 1
-global.section_platforms[0] = [
+// --- Build Level 1 Sections ---
+var level1 = ds_map_create();
+
+for (var section_index = 0; section_index < 3; section_index++) {
+    var section = ds_map_create();
+
+    // Platforms per section
+    var platforms = []; // Fill manually or via external data later
+    // Objects per section
+    var objects = []; // Fill manually or via external data later
+
+    switch (section_index) {
+        case 0:
+            platforms = [
     ["obj_CollisionTiles",384,896,1,1,0],["obj_CollisionTiles",352,896,1,1,0],["obj_CollisionTiles",320,896,1,1,0],["obj_CollisionTiles",288,896,1,1,0],
     ["obj_CollisionTiles",256,896,1,1,0],["obj_CollisionTiles",224,896,1,1,0],["obj_CollisionTiles",192,896,1,1,0],["obj_CollisionTiles",160,896,1,1,0],
     ["obj_CollisionTiles",128,896,1,1,0],["obj_CollisionTiles",96,896,1,1,0],["obj_CollisionTiles",64,896,1,1,0],["obj_CollisionTiles",32,896,1,1,0],
@@ -60,9 +71,21 @@ global.section_platforms[0] = [
     ["obj_CollisionTiles",832,928,1,1,0],["obj_CollisionTiles",800,928,1,1,0],["obj_CollisionTiles",704,992,1,1,0],["obj_CollisionTiles",672,992,1,1,0],
     ["obj_CollisionTiles",640,992,1,1,0],["obj_CollisionTiles",608,992,1,1,0],["obj_CollisionTiles",576,992,1,1,0],["obj_CollisionTiles",544,992,1,1,0],
     ["obj_CollisionTiles",512,992,1,1,0],["obj_CollisionTiles",480,992,1,1,0],["obj_CollisionTiles",448,992,1,1,0]
+			];
+            objects = [
+    ["obj_slime", 224, 689.5, 1, 1, 0],
+    ["obj_slime", 1408, 273.5, 1, 1, 0],
+    ["obj_slime", 1696, 113.2, 1, 1, 0],
+    ["obj_slime", 960, 495.4, 1, 1, 0],
+    ["obj_slime", 1376, 785.5, 1, 1, 0],
+    ["obj_slime", 576, 977.5, 1, 1, 0],
+    ["obj_Switch", 128, 240, 1, 1, 0, 3, 0],
+    ["obj_Switch", 64, 667, 1, 1, 0, 2, 0],
+    ["obj_Switch", 1823, 667, 1, 1, 0, 1, 0]
 ];
-// Section 2
-global.section_platforms[1] = [
+            break;
+        case 1:
+            platforms = [
     ["obj_CollisionTiles",1952,704,1,1,0],["obj_CollisionTiles",1920,704,1,1,0],["obj_CollisionTiles",1296,583,1,1,0],["obj_CollisionTiles",1264,583,1,1,0],
     ["obj_CollisionTiles",1232,583,1,1,0],["obj_CollisionTiles",1072,612,1,1,0],["obj_CollisionTiles",1040,612,1,1,0],["obj_CollisionTiles",1008,612,1,1,0],
     ["obj_CollisionTiles",976,612,1,1,0],["obj_CollisionTiles",944,612,1,1,0],["obj_CollisionTiles",912,612,1,1,0],["obj_CollisionTiles",880,612,1,1,0],
@@ -104,8 +127,26 @@ global.section_platforms[1] = [
     ["obj_CollisionTiles",640,992,1,1,0],["obj_CollisionTiles",608,992,1,1,0],["obj_CollisionTiles",576,992,1,1,0],["obj_CollisionTiles",544,992,1,1,0],
     ["obj_CollisionTiles",512,992,1,1,0],["obj_CollisionTiles",480,992,1,1,0],["obj_CollisionTiles",448,992,1,1,0]
 ];
-// Section 3
-global.section_platforms[2] = [
+            objects = [
+    ["obj_slime", 928, 495.4, 1, 1, 0],
+    ["obj_slime", 1440, 785.5, 1, 1, 0],
+    ["obj_slime", 1728, 689.3, 1, 1, 0],
+    ["obj_slime", 256, 689.5, 1, 1, 0],
+    ["obj_slime", 1024, 273.5, 1, 1, 0],
+    ["obj_bat", 736, 831.35, -1, 1, 0],
+    ["obj_bat", 416, 415.98, -1, 1, 0],
+    ["obj_bat", 1312, 639.55, -1, 1, 0],
+    ["obj_bat", 1440, 64.55, -1, 1, 0],
+    ["obj_Switch", 1280, 608, 1, 1, 0, 4, 1],
+    ["obj_Switch", 992, 890, 1, 1, 0, 3, 1],
+    ["obj_Switch", 1472, 440, 1, 1, 0, 2, 0],
+    ["obj_Switch", 1664, 88, 1, 1, 0, 1, 1],
+    ["obj_pressureplate", 96, 256, 0.6, 1, 0, 1],
+    ["obj_pressureplate", 480, 960, 0.6, 1, 0, 2]
+];
+            break;
+        case 2:
+            platforms = [
     ["obj_CollisionTiles", 345, 61, 8, 1, 0],
     ["obj_CollisionTiles", 576, 160, 3, 1, 0],
     ["obj_CollisionTiles", 896, 32, 12, 1, 0],
@@ -128,43 +169,7 @@ global.section_platforms[2] = [
     ["obj_CollisionTiles", 576, 608, 3.5, 1, 0],
     ["obj_CollisionTiles", 192, 747, 14, 1, 0]
 ];
-
-global.section_objects = ds_map_create();
-
-// Section 1 (Objects)
-global.section_objects[0] = [
-    ["obj_slime", 224, 689.5, 1, 1, 0],
-    ["obj_slime", 1408, 273.5, 1, 1, 0],
-    ["obj_slime", 1696, 113.2, 1, 1, 0],
-    ["obj_slime", 960, 495.4, 1, 1, 0],
-    ["obj_slime", 1376, 785.5, 1, 1, 0],
-    ["obj_slime", 576, 977.5, 1, 1, 0],
-    ["obj_Switch", 128, 240, 1, 1, 0, 3, 0],
-    ["obj_Switch", 64, 667, 1, 1, 0, 2, 0],
-    ["obj_Switch", 1823, 667, 1, 1, 0, 1, 0]
-];
-
-// Section 2 (Objects)
-global.section_objects[1] = [
-    ["obj_slime", 928, 495.4, 1, 1, 0],
-    ["obj_slime", 1440, 785.5, 1, 1, 0],
-    ["obj_slime", 1728, 689.3, 1, 1, 0],
-    ["obj_slime", 256, 689.5, 1, 1, 0],
-    ["obj_slime", 1024, 273.5, 1, 1, 0],
-    ["obj_bat", 736, 831.35, -1, 1, 0],
-    ["obj_bat", 416, 415.98, -1, 1, 0],
-    ["obj_bat", 1312, 639.55, -1, 1, 0],
-    ["obj_bat", 1440, 64.55, -1, 1, 0],
-    ["obj_Switch", 1280, 608, 1, 1, 0, 4, 1],
-    ["obj_Switch", 992, 890, 1, 1, 0, 3, 1],
-    ["obj_Switch", 1472, 440, 1, 1, 0, 2, 0],
-    ["obj_Switch", 1664, 88, 1, 1, 0, 1, 1],
-    ["obj_pressureplate", 96, 256, 0.6, 1, 0, 1],
-    ["obj_pressureplate", 480, 960, 0.6, 1, 0, 2]
-];
-
-// Section 3 (Objects)
-global.section_objects[2] = [
+            objects = [
     ["obj_slime", 1536, 945.4, 1, 1, 0],
     ["obj_slime", 1472, 561.4, 1, 1, 0],
     ["obj_bat", 896, 116.07, -1, 1, 0],
@@ -185,3 +190,51 @@ global.section_objects[2] = [
     ["obj_pressureplate", 1248, 996, 1, 1, 0, 2],
     ["obj_Door", 1824, 441, 1, 1, 0]
 ];
+            break;
+    }
+
+    section[? "platforms"] = platforms;
+    section[? "objects"] = objects;
+
+    ds_map_add_map(level1, section_index, section);
+}
+
+// Add to global level set
+ds_map_add_map(global.levels, 1, level1);
+
+// --- Lever Tracking Setup ---
+global.lever_states = ds_map_create();
+global.total_levers = 0;
+global.levers_flipped = 0;
+
+for (var sec = 0; sec < ds_map_size(level1); sec++) {
+    var section = level1[? sec];
+    var objs = section[? "objects"];
+    for (var i = 0; i < array_length(objs); i++) {
+        if (objs[i][0] == "obj_Switch") {
+            global.total_levers += 1;
+        }
+    }
+}
+
+global.unlock_rules = ds_map_create();
+
+var sec2 = ds_map_create();
+sec2[? "switch_1"] = [ ["plate", 1] ];
+sec2[? "switch_3"] = [ ["plate", 2] ];
+sec2[? "switch_3_result"] = [ ["gravity_flip"] ]; // flips when lever 3 is activated
+sec2[? "switch_4"] = [ ["switch", 3], ["monsters_cleared"] ];
+sec2[? "switch_4_result"] = [ ["gravity_flip"] ]; // <-- NEW: flip again on switch 4 activation
+global.unlock_rules[? "level_1_sec_1"] = ds_map_create(); // no locks
+global.unlock_rules[? "level_1_sec_2"] = sec2;
+
+// === Section 3 unlock rules ===
+var sec3 = ds_map_create();
+sec3[? "switch_1"] = [ ["plate", 1] ];
+sec3[? "plate_2"] = [ ["switch", 1], ["gravity_flip"] ];
+sec3[? "plate_3"] = [ ["switch", 1], ["gravity_flip"] ];
+sec3[? "switch_2"] = [ ["plate", 4] ];
+sec3[? "switch_3"] = [ ["switch", 2], ["gravity_flip"] ];
+sec3[? "switch_4"] = [ ["switch", 3], ["gravity_flip"] ];
+sec3[? "door"]     = [ ["plate", 5], ["plate", 6] ];
+global.unlock_rules[? "level_1_sec_3"] = sec3;

@@ -22,3 +22,6 @@ enum SlimeState {
 }
 slime_state = SlimeState.IDLE;
 animation_timer = 0;
+current_marker_id = 1;
+marker_forward = true;
+marker_target = noone;

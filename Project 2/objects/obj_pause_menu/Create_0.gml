@@ -1,3 +1,3 @@
-menu_width = 320; // wider than before
-menu_target_x = room_width - menu_width;
-menu_x = room_width + 20;
+menu_width = 320;
+menu_target_x = display_get_gui_width() - menu_width;
+menu_x = display_get_gui_width() + 20;

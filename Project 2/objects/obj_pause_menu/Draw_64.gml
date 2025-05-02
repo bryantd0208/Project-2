@@ -1,24 +1,23 @@
-if (global.show_pause_menu || menu_x < room_width) {
-    // --- BACKGROUND SLIDE-IN PANEL ---
+if (global.show_pause_menu || menu_x < display_get_gui_width()) {
+    var gui_width = display_get_gui_width();
+    var gui_height = display_get_gui_height();
+
     var box_width = menu_width;
     var box_x = menu_x;
     var box_y = 0;
-    var box_height = room_height;
+    var box_height = gui_height;
 
-    // Background: semi-transparent light gray
-    draw_set_alpha(0.85);
-    draw_set_color(make_color_rgb(230, 230, 230)); // light gray
+    // Background
+    draw_set_alpha(0.9);
+    draw_set_color(make_color_rgb(20, 30, 40)); // Deep navy
     draw_rectangle(box_x, box_y, box_x + box_width, box_y + box_height, true);
-    draw_set_alpha(0.2);
 
-    // Optional: outline
-    draw_set_color(c_white);
+    draw_set_alpha(1);
+    draw_set_color(make_color_rgb(100, 160, 190)); // Cool cyan border
     draw_rectangle(box_x, box_y, box_x + box_width, box_y + box_height, false);
-	
-	draw_set_alpha(1);
-    // --- TEXT OPTIONS ---
+
+    // Font and text settings
     draw_set_font(fnt_pause);
-    draw_set_color(c_black); // darker text since background is light now
     draw_set_halign(fa_left);
     draw_set_valign(fa_top);
 
@@ -27,7 +26,25 @@ if (global.show_pause_menu || menu_x < room_width) {
     var text_y = box_y + padding;
     var spacing = 60;
 
+    // Title
+    draw_set_color(c_white);
     draw_text(text_x, text_y, "Pause Menu");
-    draw_text(text_x, text_y + spacing * 1.5, "[R] Resume");
-    draw_text(text_x, text_y + spacing * 2.5, "[Q] Quit");
+
+    // Resume Button
+    var resume_y = text_y + spacing * 1.5;
+    if (global.pause_hover_resume) {
+        draw_set_color(make_color_rgb(120, 200, 255)); // Light blue on hover
+    } else {
+        draw_set_color(c_white);
+    }
+    draw_text(text_x, resume_y, "[R] Resume");
+
+    // Quit Button
+    var quit_y = text_y + spacing * 2.5;
+    if (global.pause_hover_quit) {
+        draw_set_color(make_color_rgb(255, 100, 100)); // Red-ish on hover
+    } else {
+        draw_set_color(c_white);
+    }
+    draw_text(text_x, quit_y, "[Q] Quit");
 }

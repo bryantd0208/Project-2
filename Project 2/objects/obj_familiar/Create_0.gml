@@ -1,5 +1,5 @@
 // obj_Familiar Create Event
-follow_distance = 15 + irandom_range(0, 20);
+follow_distance = 15 + irandom_range(1, 10);
 follow_timer = 0;
 hspeed = 0;
 vspeed = 0;

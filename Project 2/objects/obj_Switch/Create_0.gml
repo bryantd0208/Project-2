@@ -4,3 +4,4 @@
 state = 0; // Start deactivated
 interaction_cooldown = 0; // frames before the player can flip again
 cooldown_time = 30; // about 0.5 seconds at 60fps
+flip_registered = false;
