@@ -1,4 +1,6 @@
-// obj_global_controller Create Event
+global.current_bgm = noone;
+global.current_music = noone;
+last_room = room;
 
 // --- Game State Initialization ---
 global.current_level = 1;

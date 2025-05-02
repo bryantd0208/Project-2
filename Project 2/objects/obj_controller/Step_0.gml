@@ -239,3 +239,12 @@ if (global.timer_active) {
         global.timer_active = false;
     }
 }
+// --- LOSS CONDITION: Timer expired ---
+if (global.level_timer <= 0 && !global.game_lost) {
+    global.game_lost = true;
+    room_goto(rm_Lose);
+}
+
+if (keyboard_check(vk_alt) && keyboard_check_pressed(ord("L"))) {
+    global.levers_flipped = global.total_levers;
+}

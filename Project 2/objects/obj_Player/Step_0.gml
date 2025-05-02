@@ -21,18 +21,18 @@ var ground_check_offset = gravity_flip;
 if ((keyboard_check_pressed(vk_up) || keyboard_check_pressed(ord("W")))) {
     if (place_meeting(x, y + ground_check_offset, obj_CollisionTiles)) {
         vspeed = -jump_force * gravity_flip;
+        audio_play_sound(snd_player_jump, 1, false); // 🔊 jump
     }
     else if (wall_slide) {
-        // Wall jump off the wall!
         vspeed = -wall_jump_v_force * gravity_flip;
-        hspeed = -wall_dir * wall_jump_h_force; // Push opposite from wall
-        wall_slide = false; // No longer sticking
+        hspeed = -wall_dir * wall_jump_h_force;
+        wall_slide = false;
+        audio_play_sound(snd_player_jump, 1, false); // 🔊 wall jump
     }
 }
 
-
 // --- SHORT HOP CONTROL ---
-if (vspeed * gravity_flip < 0) { // Rising
+if (vspeed * gravity_flip < 0) {
     if (!(keyboard_check(vk_up) || keyboard_check(ord("W")))) {
         var max_short_hop_vspeed = 2.5;
         if (abs(vspeed) > max_short_hop_vspeed) {
@@ -40,8 +40,6 @@ if (vspeed * gravity_flip < 0) { // Rising
         }
     }
 }
-
-
 
 // --- UPDATE STATE ---
 if (!moving) {
@@ -53,6 +51,11 @@ if (!moving) {
     } else {
         player_speed = base_speed;
         player_state = PlayerState.WALKING;
+    }
+
+    // 🔊 Footstep sound (light control, only one per press)
+    if (grounded && !audio_is_playing(snd_player_step)) {
+        audio_play_sound(snd_player_step, 1, false);
     }
 }
 
@@ -68,12 +71,9 @@ if (place_meeting(x + hspeed, y, obj_CollisionTiles)) {
     hspeed = 0;
 }
 
-// 🔥 NEW DEBUG
 if (wall_slide) {
     show_debug_message("Wall sliding! Grounded = " + string(grounded));
 }
-
-
 
 // --- VERTICAL COLLISION ---
 if (place_meeting(x, y + vspeed, obj_CollisionTiles)) {
@@ -83,7 +83,6 @@ if (place_meeting(x, y + vspeed, obj_CollisionTiles)) {
     }
     vspeed = 0;
 } else {
-    // --- Landing forgiveness: if very close to ground, snap ---
     if (abs(vspeed) < 1 && place_meeting(x, y + sign(gravity_flip), obj_CollisionTiles)) {
         while (!place_meeting(x, y + sign(gravity_flip), obj_CollisionTiles)) {
             y += sign(gravity_flip);
@@ -95,12 +94,16 @@ if (place_meeting(x, y + vspeed, obj_CollisionTiles)) {
     }
 }
 
-
 // --- APPLY HORIZONTAL MOVEMENT ---
 x += hspeed;
 
-// --- GROUND CHECK ---
+// --- LANDING SOUND (trigger on actual transition) ---
+var prev_grounded = grounded;
 grounded = place_meeting(x, y + gravity_flip, obj_CollisionTiles);
+
+if (!prev_grounded && grounded) {
+    audio_play_sound(snd_player_land, 1, false); // 🔊 land
+}
 
 // --- GLOBAL HIT FREEZE ---
 if (global.hit_freeze_timer > 0) {
@@ -117,7 +120,6 @@ if (player_state == PlayerState.DAMAGED) {
     }
 
     damage_timer += 1;
-
     hspeed = lerp(hspeed, knockback_target_hspeed, 0.25);
     vspeed = lerp(vspeed, knockback_target_vspeed, 0.25);
 
@@ -134,11 +136,9 @@ if (player_state == PlayerState.DAMAGED) {
 
 // --- STATE INPUT CHECK (DEFEND, ATTACK) ---
 if (player_state != PlayerState.DAMAGED) {
-    // --- DEFENDING ---
     if (keyboard_check(vk_control)) {
         player_state = PlayerState.DEFENDING;
     }
-    // --- ATTACKING ---
     else if (keyboard_check_pressed(vk_space)) {
         if (player_state != PlayerState.DEFENDING) {
             player_state = PlayerState.ATTACKING;
@@ -156,6 +156,7 @@ if (player_state != PlayerState.DAMAGED) {
                 slash.direction = 0;
                 slash.image_xscale = 1;
             }
+
         }
     }
 }
@@ -178,30 +179,37 @@ if (keyboard_check(vk_escape)) {
     scr_start_dialogue(story, spr_zero_text);
 }
 
+// --- OUT OF BOUNDS DEATH CHECK ---
+if (!global.game_lost) {
+    var buffer = 300;
+    if (x < -buffer || x > 1920 + buffer || y < -buffer || y > 1080 + buffer) {
+        global.game_lost = true;
+        room_goto(rm_Lose);
+    }
+}
+
+
 // --- LOSS CONDITION ---
 if (current_health <= 0 && !global.game_lost) {
     global.game_lost = true;
     room_goto(rm_Lose);
 }
 
+
 // --- APPLY GRAVITY and WALL SLIDE ---
 if (!grounded) {
-    vspeed += gravity_force * gravity_flip; // Gravity always applies
+    vspeed += gravity_force * gravity_flip;
 
-    if (wall_slide) {
-        // Limit fall speed while sliding
-        if (vspeed * gravity_flip > wall_slide_speed) {
-            vspeed = wall_slide_speed * gravity_flip;
-        }
+    if (wall_slide && vspeed * gravity_flip > wall_slide_speed) {
+        vspeed = wall_slide_speed * gravity_flip;
     }
 } else {
-    // Snap to 0 when grounded
     if (sign(vspeed) == sign(gravity_flip)) {
         vspeed = 0;
     }
 }
 
-// Familiar teleport control
+// --- Familiar Teleport Control ---
 if (keyboard_check_pressed(ord("F"))) {
     if (!variable_global_exists("familiar_mode")) global.familiar_mode = 0;
     global.familiar_mode = (global.familiar_mode + 1) mod 3;
@@ -215,19 +223,15 @@ if (keyboard_check_pressed(ord("F"))) {
     }
 }
 
-
 if (global.familiar_mode == 1 && mouse_check_button_pressed(mb_left)) {
     global.familiar_target_x = camera_get_view_x(view_camera[0]) + mouse_x;
     global.familiar_target_y = camera_get_view_y(view_camera[0]) + mouse_y;
-    global.familiar_mode = 2; // Lock familiar after choosing location
+    global.familiar_mode = 2;
 
     show_debug_message("Familiar target selected at: " + string(global.familiar_target_x) + ", " + string(global.familiar_target_y));
 }
 
-
-if (sprite_index == -1) {
-    sprite_index = spr_CollisionTileTest;
-}
+if (sprite_index == -1) sprite_index = spr_CollisionTileTest;
 
 visible = true;
 image_alpha = 1;
@@ -241,9 +245,7 @@ if (player_state != PlayerState.ATTACKING && player_state != PlayerState.RUNNING
     if (regen_timer >= regen_interval) {
         current_health = min(current_health + regen_amount, max_health);
         regen_timer = 0;
-
     }
 } else {
-    // Reset timer if the player is active
     regen_timer = 0;
 }

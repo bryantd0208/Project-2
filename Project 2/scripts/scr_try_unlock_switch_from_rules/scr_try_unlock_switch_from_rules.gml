@@ -4,7 +4,7 @@ function scr_try_unlock_switch_from_rules() {
     var true_index = section_index + 2;
     var sec_key = "level_" + string(global.current_level) + "_sec_" + string(true_index);
 
-    show_debug_message("🧩 Checking unlocks for " + sec_key);
+
     if (!ds_map_exists(global.unlock_rules, sec_key)) exit;
 
     var rules = global.unlock_rules[? sec_key];
@@ -31,7 +31,7 @@ function scr_try_unlock_switch_from_rules() {
                 }
                 if (!found) {
                     unlocked = false;
-                    show_debug_message("❌ Plate " + string(ref_id) + " not pressed.");
+
                 }
                 break;
 
@@ -43,7 +43,7 @@ function scr_try_unlock_switch_from_rules() {
                 }
                 if (!found) {
                     unlocked = false;
-                    show_debug_message("❌ Switch " + string(ref_id) + " not flipped.");
+
                 }
                 break;
 
@@ -51,17 +51,17 @@ function scr_try_unlock_switch_from_rules() {
                 found = !(instance_exists(obj_slime) || instance_exists(obj_bat) || instance_exists(obj_skeleton));
                 if (!found) {
                     unlocked = false;
-                    show_debug_message("❌ Monsters still exist.");
+
                 }
                 break;
 
             default:
-                show_debug_message("⚠️ Unknown unlock condition: " + string(typ));
+
                 unlocked = false;
         }
     }
 
-    // ✅ Only unlock the switch — do NOT trigger result effects like gravity
+
     if (unlocked) {
         var target_id = lever_id;
         var target_section = section_index;
@@ -70,7 +70,7 @@ function scr_try_unlock_switch_from_rules() {
             if (lever_id == target_id && section_index == target_section) {
                 if (is_locked) {
                     is_locked = false;
-                    show_debug_message("🔓 Lever ID " + string(lever_id) + " unlocked.");
+
                 }
             }
         }

@@ -47,7 +47,7 @@ draw_rectangle(bar_x - 1, bar_y - 1, bar_x + bar_width + 1, bar_y + bar_height +
 
 // Text centered vertically and horizontally
 draw_set_font(fnt_ui);
-draw_set_color(c_white);
+draw_set_color(c_black);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 draw_text(bar_x + bar_width / 2, bar_y + bar_height / 2,

@@ -1,6 +1,6 @@
 {
   "$GMSound":"",
-  "%Name":"snd_ButtonPress",
+  "%Name":"snd_skeleton_attacked",
   "audioGroupId":{
     "name":"audiogroup_default",
     "path":"audiogroups/audiogroup_default",
@@ -10,7 +10,7 @@
   "compression":0,
   "conversionMode":0,
   "duration":1.071,
-  "name":"snd_ButtonPress",
+  "name":"snd_skeleton_attacked",
   "parent":{
     "name":"Sounds",
     "path":"folders/Sounds.yy",
@@ -19,7 +19,7 @@
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"snd_ButtonPress.mp3",
+  "soundFile":"snd_skeleton_attacked.mp3",
   "type":0,
   "volume":1.0,
 }

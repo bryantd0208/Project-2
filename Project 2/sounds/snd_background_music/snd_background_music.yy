@@ -1,6 +1,6 @@
 {
   "$GMSound":"",
-  "%Name":"snd_ButtonPress",
+  "%Name":"snd_background_music",
   "audioGroupId":{
     "name":"audiogroup_default",
     "path":"audiogroups/audiogroup_default",
@@ -9,8 +9,8 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":1.071,
-  "name":"snd_ButtonPress",
+  "duration":95.13796,
+  "name":"snd_background_music",
   "parent":{
     "name":"Sounds",
     "path":"folders/Sounds.yy",
@@ -19,7 +19,7 @@
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"snd_ButtonPress.mp3",
+  "soundFile":"snd_background_music.mp3",
   "type":0,
   "volume":1.0,
 }
